@@ -4,6 +4,7 @@
 using System.Threading.Tasks;
 using TasksWithBD.Data;
 using TasksWithBD.Entities;
+using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
 
 namespace TasksWithBD.Services
@@ -18,13 +19,20 @@ namespace TasksWithBD.Services
 
         public void CreateTask(ITask task)
         {
-            if(string.IsNullOrWhiteSpace(task.Name))
+            task.CreateDate = DateTime.Now.Date;
+
+            if (string.IsNullOrWhiteSpace(task.Name))
             {
                 //proibido task com nome vazio
                 throw new ArgumentException("Task name can not be null or empty.");
             }
 
-            task.CreateDate = DateTime.Now.Date;
+            if (task.StartDate > task.FinishDate)
+            {
+                //não pode criar uma task onde o star começa depois do finish
+                throw new ArgumentException("Start date can't be greater than the finish date.");
+            }
+
 
             _taskRepository.Add(task);
         }
@@ -38,6 +46,16 @@ namespace TasksWithBD.Services
         public void DeleteTask(int id)
         {
             _taskRepository.Delete(id);
+        }
+
+        public void UpdateTask(ITask task)
+        {
+            if (task.Status == OrderStatus.Finished && task.FinishDate == null)
+            {
+                task.FinishDate = DateTime.Now.Date;
+            }
+
+            _taskRepository.Update(task);
         }
 
         public ITask GetTaskById(int id)

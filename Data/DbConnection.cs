@@ -9,7 +9,7 @@ namespace TasksWithBD.Data
         //Construtor
         public DbConnection()
         {
-            con.ConnectionString = "Data Source=DESKTOP-VJBNCBH;Initial Catalog=TESTE;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+            con.ConnectionString = "Data Source=DESKTOP-SR0S709;Initial Catalog=TESTE;Integrated Security=True;Trust Server Certificate=True";
         }
 
         //Conectar

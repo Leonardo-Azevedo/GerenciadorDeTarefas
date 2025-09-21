@@ -36,42 +36,42 @@
             lblStartDate = new Label();
             btnCreate = new Button();
             btnList = new Button();
-            dtgView = new DataGridView();
-            colName = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            CreateDate = new DataGridViewTextBoxColumn();
-            StartDate = new DataGridViewTextBoxColumn();
-            FinishDate = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
-            lblIdTask = new Label();
-            txtIdTaskDelete = new TextBox();
             btnDelete = new Button();
-            btnUpdate = new Button();
+            btnEdit = new Button();
             txtIdSelect = new TextBox();
             lblId = new Label();
             btnSelect = new Button();
+            Status = new DataGridViewTextBoxColumn();
+            FinishDate = new DataGridViewTextBoxColumn();
+            StartDate = new DataGridViewTextBoxColumn();
+            CreateDate = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            dtgView = new DataGridView();
+            label2 = new Label();
+            listStatus = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             SuspendLayout();
             // 
             // txtName
             // 
-            txtName.Location = new Point(100, 72);
+            txtName.Location = new Point(101, 68);
             txtName.Name = "txtName";
             txtName.Size = new Size(251, 23);
             txtName.TabIndex = 0;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(100, 119);
+            txtDescription.Location = new Point(101, 115);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(251, 52);
+            txtDescription.Size = new Size(251, 71);
             txtDescription.TabIndex = 1;
             // 
             // dtStartDate
             // 
             dtStartDate.Format = DateTimePickerFormat.Short;
-            dtStartDate.Location = new Point(100, 199);
+            dtStartDate.Location = new Point(101, 210);
             dtStartDate.Name = "dtStartDate";
             dtStartDate.Size = new Size(129, 23);
             dtStartDate.TabIndex = 2;
@@ -80,7 +80,7 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(55, 75);
+            lblName.Location = new Point(56, 71);
             lblName.Name = "lblName";
             lblName.Size = new Size(39, 15);
             lblName.TabIndex = 3;
@@ -89,7 +89,7 @@
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(27, 122);
+            lblDescription.Location = new Point(28, 118);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(67, 15);
             lblDescription.TabIndex = 4;
@@ -98,7 +98,7 @@
             // lblStartDate
             // 
             lblStartDate.AutoSize = true;
-            lblStartDate.Location = new Point(36, 205);
+            lblStartDate.Location = new Point(37, 216);
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(58, 15);
             lblStartDate.TabIndex = 5;
@@ -106,7 +106,7 @@
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(100, 243);
+            btnCreate.Location = new Point(191, 250);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(75, 23);
             btnCreate.TabIndex = 6;
@@ -116,7 +116,7 @@
             // 
             // btnList
             // 
-            btnList.Location = new Point(370, 557);
+            btnList.Location = new Point(476, 612);
             btnList.Name = "btnList";
             btnList.Size = new Size(75, 23);
             btnList.TabIndex = 8;
@@ -124,52 +124,52 @@
             btnList.UseVisualStyleBackColor = true;
             btnList.Click += btnList_Click;
             // 
-            // dtgView
+            // btnDelete
             // 
-            dtgView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dtgView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dtgView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgView.Columns.AddRange(new DataGridViewColumn[] { colName, Description, CreateDate, StartDate, FinishDate, Status });
-            dtgView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dtgView.Location = new Point(29, 292);
-            dtgView.Name = "dtgView";
-            dtgView.Size = new Size(789, 250);
-            dtgView.TabIndex = 9;
+            btnDelete.Location = new Point(623, 12);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 23);
+            btnDelete.TabIndex = 12;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // colName
+            // btnEdit
             // 
-            colName.DataPropertyName = "Name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.Width = 64;
+            btnEdit.Location = new Point(704, 13);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(75, 23);
+            btnEdit.TabIndex = 13;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // Description
+            // txtIdSelect
             // 
-            Description.DataPropertyName = "Description";
-            Description.HeaderText = "Description";
-            Description.Name = "Description";
-            Description.Width = 92;
+            txtIdSelect.Location = new Point(419, 13);
+            txtIdSelect.Name = "txtIdSelect";
+            txtIdSelect.Size = new Size(100, 23);
+            txtIdSelect.TabIndex = 14;
+            txtIdSelect.TextChanged += txtIdSelect_TextChanged;
             // 
-            // CreateDate
+            // lblId
             // 
-            CreateDate.DataPropertyName = "CreateDate";
-            CreateDate.HeaderText = "Create Date";
-            CreateDate.Name = "CreateDate";
-            CreateDate.Width = 93;
+            lblId.AutoSize = true;
+            lblId.Location = new Point(396, 16);
+            lblId.Name = "lblId";
+            lblId.Size = new Size(17, 15);
+            lblId.TabIndex = 15;
+            lblId.Text = "Id";
             // 
-            // StartDate
+            // btnSelect
             // 
-            StartDate.DataPropertyName = "StartDate";
-            StartDate.HeaderText = "Start Date";
-            StartDate.Name = "StartDate";
-            StartDate.Width = 83;
-            // 
-            // FinishDate
-            // 
-            FinishDate.DataPropertyName = "FinishDate";
-            FinishDate.HeaderText = "Finish Date";
-            FinishDate.Name = "FinishDate";
-            FinishDate.Width = 90;
+            btnSelect.Location = new Point(542, 12);
+            btnSelect.Name = "btnSelect";
+            btnSelect.Size = new Size(75, 23);
+            btnSelect.TabIndex = 16;
+            btnSelect.Text = "Select";
+            btnSelect.UseVisualStyleBackColor = true;
+            btnSelect.Click += btnSelect_Click;
             // 
             // Status
             // 
@@ -178,79 +178,84 @@
             Status.Name = "Status";
             Status.Width = 64;
             // 
-            // lblIdTask
+            // FinishDate
             // 
-            lblIdTask.AutoSize = true;
-            lblIdTask.Location = new Point(528, 22);
-            lblIdTask.Name = "lblIdTask";
-            lblIdTask.Size = new Size(43, 15);
-            lblIdTask.TabIndex = 10;
-            lblIdTask.Text = "Task ID";
+            FinishDate.DataPropertyName = "FinishDate";
+            FinishDate.HeaderText = "Finish Date";
+            FinishDate.Name = "FinishDate";
+            FinishDate.Width = 90;
             // 
-            // txtIdTaskDelete
+            // StartDate
             // 
-            txtIdTaskDelete.Location = new Point(577, 19);
-            txtIdTaskDelete.Name = "txtIdTaskDelete";
-            txtIdTaskDelete.Size = new Size(72, 23);
-            txtIdTaskDelete.TabIndex = 11;
+            StartDate.DataPropertyName = "StartDate";
+            StartDate.HeaderText = "Start Date";
+            StartDate.Name = "StartDate";
+            StartDate.Width = 83;
             // 
-            // btnDelete
+            // CreateDate
             // 
-            btnDelete.Location = new Point(673, 19);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
-            btnDelete.TabIndex = 12;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
+            CreateDate.DataPropertyName = "CreateDate";
+            CreateDate.HeaderText = "Create Date";
+            CreateDate.Name = "CreateDate";
+            CreateDate.Width = 93;
             // 
-            // btnUpdate
+            // Description
             // 
-            btnUpdate.Location = new Point(276, 243);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(75, 23);
-            btnUpdate.TabIndex = 13;
-            btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.Name = "Description";
+            Description.Width = 92;
             // 
-            // txtIdSelect
+            // colName
             // 
-            txtIdSelect.Location = new Point(100, 27);
-            txtIdSelect.Name = "txtIdSelect";
-            txtIdSelect.Size = new Size(100, 23);
-            txtIdSelect.TabIndex = 14;
+            colName.DataPropertyName = "Name";
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.Width = 64;
             // 
-            // lblId
+            // dtgView
             // 
-            lblId.AutoSize = true;
-            lblId.Location = new Point(77, 30);
-            lblId.Name = "lblId";
-            lblId.Size = new Size(17, 15);
-            lblId.TabIndex = 15;
-            lblId.Text = "Id";
+            dtgView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dtgView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dtgView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgView.Columns.AddRange(new DataGridViewColumn[] { colName, Description, CreateDate, StartDate, FinishDate, Status });
+            dtgView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dtgView.Location = new Point(12, 292);
+            dtgView.Name = "dtgView";
+            dtgView.Size = new Size(1042, 314);
+            dtgView.TabIndex = 9;
             // 
-            // btnSelect
+            // label2
             // 
-            btnSelect.Location = new Point(223, 26);
-            btnSelect.Name = "btnSelect";
-            btnSelect.Size = new Size(75, 23);
-            btnSelect.TabIndex = 16;
-            btnSelect.Text = "Select";
-            btnSelect.UseVisualStyleBackColor = true;
-            btnSelect.Click += btnSelect_Click;
+            label2.AutoSize = true;
+            label2.Location = new Point(399, 71);
+            label2.Name = "label2";
+            label2.Size = new Size(39, 15);
+            label2.TabIndex = 19;
+            label2.Text = "Status";
+            // 
+            // listStatus
+            // 
+            listStatus.Enabled = false;
+            listStatus.FormattingEnabled = true;
+            listStatus.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled" });
+            listStatus.Location = new Point(444, 68);
+            listStatus.Name = "listStatus";
+            listStatus.Size = new Size(129, 23);
+            listStatus.TabIndex = 20;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(842, 588);
+            ClientSize = new Size(1066, 647);
+            Controls.Add(listStatus);
+            Controls.Add(label2);
             Controls.Add(btnSelect);
             Controls.Add(lblId);
             Controls.Add(txtIdSelect);
-            Controls.Add(btnUpdate);
+            Controls.Add(btnEdit);
             Controls.Add(btnDelete);
-            Controls.Add(txtIdTaskDelete);
-            Controls.Add(lblIdTask);
             Controls.Add(dtgView);
             Controls.Add(btnList);
             Controls.Add(btnCreate);
@@ -277,19 +282,19 @@
         private Label lblStartDate;
         private Button btnCreate;
         private Button btnList;
-        private DataGridView dtgView;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn Description;
-        private DataGridViewTextBoxColumn CreateDate;
-        private DataGridViewTextBoxColumn StartDate;
-        private DataGridViewTextBoxColumn FinishDate;
-        private DataGridViewTextBoxColumn Status;
-        private Label lblIdTask;
-        private TextBox txtIdTaskDelete;
         private Button btnDelete;
-        private Button btnUpdate;
+        private Button btnEdit;
         private TextBox txtIdSelect;
         private Label lblId;
         private Button btnSelect;
+        private DataGridViewTextBoxColumn Status;
+        private DataGridViewTextBoxColumn FinishDate;
+        private DataGridViewTextBoxColumn StartDate;
+        private DataGridViewTextBoxColumn CreateDate;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridView dtgView;
+        private Label label2;
+        private ComboBox listStatus;
     }
 }

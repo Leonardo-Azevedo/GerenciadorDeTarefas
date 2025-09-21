@@ -1,7 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using TasksWithBD.Entities;
 using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
@@ -10,7 +7,7 @@ namespace TasksWithBD.Data
 {
     public class TaskRepository()
     {
-        SqlCommand cmd = new SqlCommand();
+        //SqlCommand cmd = new SqlCommand();
         DbConnection connection = new DbConnection();
         string message = "";
 
@@ -30,6 +27,8 @@ namespace TasksWithBD.Data
         }
         public void Add(ITask task)
         {
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandText = "INSERT INTO Tasks (Name, Description, CreateDate, StartDate, Status) VALUES (@Name, @Description, @CreateDate, @StartDate, @Status)";
 
             cmd.Parameters.AddWithValue("@Name", task.Name);
@@ -63,6 +62,8 @@ namespace TasksWithBD.Data
 
         public IEnumerable<ITask> ListAll()
         {
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandText = "SELECT Name, Description, CreateDate, StartDate, FinishDate, Status FROM Tasks ORDER BY Id DESC";
             List<ITask> list = new List<ITask>();
 
@@ -95,6 +96,8 @@ namespace TasksWithBD.Data
 
         public void Delete(int id)
         {
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandText = "DELETE FROM Tasks WHERE Id = @Id";
 
             cmd.Parameters.AddWithValue("@Id", id);
@@ -121,11 +124,41 @@ namespace TasksWithBD.Data
 
         public void Update(ITask task)
         {
-            
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "UPDATE Tasks SET Name=@Name, Description=@Description, StartDate=@StartDate, FinishDate=@FinishDate, Status=@Status WHERE Id=@Id";
+
+            cmd.Parameters.AddWithValue("@Name", task.Name);
+            cmd.Parameters.AddWithValue("@Description", task.Description);
+            cmd.Parameters.AddWithValue("@StartDate", task.StartDate.Date);
+            cmd.Parameters.AddWithValue("@FinishDate", task.FinishDate.HasValue ? (object)task.FinishDate.Value.Date : DBNull.Value);
+            cmd.Parameters.AddWithValue("@Status", (int)task.Status);
+            cmd.Parameters.AddWithValue("@Id", task.Id);
+
+            try
+            {
+                //conectar no banco
+                cmd.Connection = connection.connect();
+                //executar o comando
+                cmd.ExecuteNonQuery();
+                //desconectar do banco
+                connection.disconnect();
+                //mostrar mensagem
+                this.message = "Task Updated!";
+                //clear parameters
+                cmd.Parameters.Clear();
+
+            }
+            catch (Exception ex)
+            {
+                this.message = "Error!";
+            }
         }
 
         public ITask GetTaskById(int id)
         {
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandText = "SELECT * FROM Tasks WHERE Id = @Id";
 
             cmd.Parameters.AddWithValue("Id", id);

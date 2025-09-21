@@ -16,13 +16,16 @@ namespace TasksWithBD
             var repository = new TaskRepository();
             _taskService = new TaskService(repository);
             dtgView.AutoGenerateColumns = false;
+            listStatus.DataSource = Enum.GetValues(typeof(OrderStatus));
 
         }
 
-        public void limpaCampos()
+        public void Clear()
         {
             txtName.Text = string.Empty;
             txtDescription.Text = string.Empty;
+            dtStartDate.Text = string.Empty;
+            listStatus.Text = string.Empty;
         }
 
         private IEnumerable<ITask> LoadTasks()
@@ -46,7 +49,7 @@ namespace TasksWithBD
 
             _taskService.CreateTask(task);
 
-            limpaCampos();
+            Clear();
 
         }
 
@@ -59,13 +62,13 @@ namespace TasksWithBD
         private void btnDelete_Click(object sender, EventArgs e)
         {
             int outIdTask;
-            int.TryParse(txtIdTaskDelete.Text, out outIdTask);
+            int.TryParse(txtIdSelect.Text, out outIdTask);
             _taskService.DeleteTask(outIdTask);
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            limpaCampos();
+            Clear();
 
             int outIdTask;
             int.TryParse(txtIdSelect.Text, out outIdTask);
@@ -77,6 +80,40 @@ namespace TasksWithBD
                 txtName.Text = task.Name;
                 txtDescription.Text = task.Description;
                 dtStartDate.Value = task.StartDate;
+                listStatus.SelectedItem = task.Status;
+            }
+
+            listStatus.Enabled = true;
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+            int outIdTask;
+            int.TryParse(txtIdSelect.Text, out outIdTask);
+
+            ITask taskUp = _taskService.GetTaskById(outIdTask);
+
+            taskUp.Name = txtName.Text;
+            taskUp.Description = txtDescription.Text;
+            taskUp.StartDate = dtStartDate.Value;
+            taskUp.Status = (OrderStatus)listStatus.SelectedItem;
+
+            _taskService.UpdateTask(taskUp);
+
+            Clear();
+
+        }
+
+        private void txtIdSelect_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdSelect.Text != null)
+            {
+                btnCreate.Enabled = false;
+            }
+            else
+            {
+                btnCreate.Enabled = true;
             }
         }
     }
