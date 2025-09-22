@@ -10,6 +10,7 @@ namespace TasksWithBD
     public partial class Form1 : Form
     {
         private TaskService _taskService;
+        private int _currentTaskId;
         public Form1()
         {
             InitializeComponent();
@@ -89,11 +90,12 @@ namespace TasksWithBD
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-            int outIdTask;
-            int.TryParse(txtIdSelect.Text, out outIdTask);
+            //int outIdTask;
+            //int.TryParse(txtIdSelect.Text, out outIdTask);
 
-            ITask taskUp = _taskService.GetTaskById(outIdTask);
+            ITask taskUp = _taskService.GetTaskById(_currentTaskId);
 
+            taskUp.Id = _currentTaskId;
             taskUp.Name = txtName.Text;
             taskUp.Description = txtDescription.Text;
             taskUp.StartDate = dtStartDate.Value;
@@ -115,6 +117,22 @@ namespace TasksWithBD
             {
                 btnCreate.Enabled = true;
             }
+        }
+
+        private void dtgView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            if(index >= 0)
+            {
+                DataGridViewRow selectedRow = dtgView.Rows[index];
+                _currentTaskId = (int)selectedRow.Cells[0].Value;
+                txtName.Text = selectedRow.Cells[1].Value.ToString();
+                txtDescription.Text = selectedRow.Cells[2].Value.ToString();
+                dtStartDate.Text = selectedRow.Cells[4].Value.ToString();
+                listStatus.Text = selectedRow.Cells[6].Value.ToString();
+            }
+            
+
         }
     }
 }

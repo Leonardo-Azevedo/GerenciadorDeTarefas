@@ -55,7 +55,7 @@ namespace TasksWithBD.Services
                 task.FinishDate = DateTime.Now.Date;
             }
 
-            _taskRepository.Update(task);
+                _taskRepository.Update(task);
         }
 
         public ITask GetTaskById(int id)

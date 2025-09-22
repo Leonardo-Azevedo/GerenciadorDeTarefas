@@ -25,5 +25,16 @@ namespace TasksWithBD.Entities
             FinishDate = finishDate;
             Status = status;
         }
+
+        public SimpleTask(int id, string name, string description, DateTime createDate, DateTime startDate, DateTime? finishDate, OrderStatus status)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            CreateDate = createDate;
+            StartDate = startDate;
+            FinishDate = finishDate;
+            Status = status;
+        }
     }
 }

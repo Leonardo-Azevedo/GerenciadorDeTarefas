@@ -41,15 +41,16 @@
             txtIdSelect = new TextBox();
             lblId = new Label();
             btnSelect = new Button();
-            Status = new DataGridViewTextBoxColumn();
-            FinishDate = new DataGridViewTextBoxColumn();
-            StartDate = new DataGridViewTextBoxColumn();
-            CreateDate = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
             dtgView = new DataGridView();
             label2 = new Label();
             listStatus = new ComboBox();
+            Id = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            CreateDate = new DataGridViewTextBoxColumn();
+            StartDate = new DataGridViewTextBoxColumn();
+            FinishDate = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             SuspendLayout();
             // 
@@ -171,59 +172,20 @@
             btnSelect.UseVisualStyleBackColor = true;
             btnSelect.Click += btnSelect_Click;
             // 
-            // Status
-            // 
-            Status.DataPropertyName = "Status";
-            Status.HeaderText = "Status";
-            Status.Name = "Status";
-            Status.Width = 64;
-            // 
-            // FinishDate
-            // 
-            FinishDate.DataPropertyName = "FinishDate";
-            FinishDate.HeaderText = "Finish Date";
-            FinishDate.Name = "FinishDate";
-            FinishDate.Width = 90;
-            // 
-            // StartDate
-            // 
-            StartDate.DataPropertyName = "StartDate";
-            StartDate.HeaderText = "Start Date";
-            StartDate.Name = "StartDate";
-            StartDate.Width = 83;
-            // 
-            // CreateDate
-            // 
-            CreateDate.DataPropertyName = "CreateDate";
-            CreateDate.HeaderText = "Create Date";
-            CreateDate.Name = "CreateDate";
-            CreateDate.Width = 93;
-            // 
-            // Description
-            // 
-            Description.DataPropertyName = "Description";
-            Description.HeaderText = "Description";
-            Description.Name = "Description";
-            Description.Width = 92;
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "Name";
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.Width = 64;
-            // 
             // dtgView
             // 
             dtgView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dtgView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtgView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgView.Columns.AddRange(new DataGridViewColumn[] { colName, Description, CreateDate, StartDate, FinishDate, Status });
+            dtgView.Columns.AddRange(new DataGridViewColumn[] { Id, colName, Description, CreateDate, StartDate, FinishDate, Status });
             dtgView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dtgView.Location = new Point(12, 292);
+            dtgView.MultiSelect = false;
             dtgView.Name = "dtgView";
+            dtgView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dtgView.Size = new Size(1042, 314);
             dtgView.TabIndex = 9;
+            dtgView.CellClick += dtgView_CellClick;
             // 
             // label2
             // 
@@ -243,6 +205,58 @@
             listStatus.Name = "listStatus";
             listStatus.Size = new Size(129, 23);
             listStatus.TabIndex = 20;
+            // 
+            // Id
+            // 
+            Id.DataPropertyName = "Id";
+            Id.Frozen = true;
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.Visible = false;
+            Id.Width = 42;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "Name";
+            colName.Frozen = true;
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.Width = 64;
+            // 
+            // Description
+            // 
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.Name = "Description";
+            Description.Width = 92;
+            // 
+            // CreateDate
+            // 
+            CreateDate.DataPropertyName = "CreateDate";
+            CreateDate.HeaderText = "Create Date";
+            CreateDate.Name = "CreateDate";
+            CreateDate.Width = 93;
+            // 
+            // StartDate
+            // 
+            StartDate.DataPropertyName = "StartDate";
+            StartDate.HeaderText = "Start Date";
+            StartDate.Name = "StartDate";
+            StartDate.Width = 83;
+            // 
+            // FinishDate
+            // 
+            FinishDate.DataPropertyName = "FinishDate";
+            FinishDate.HeaderText = "Finish Date";
+            FinishDate.Name = "FinishDate";
+            FinishDate.Width = 90;
+            // 
+            // Status
+            // 
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
+            Status.Width = 64;
             // 
             // Form1
             // 
@@ -287,14 +301,15 @@
         private TextBox txtIdSelect;
         private Label lblId;
         private Button btnSelect;
-        private DataGridViewTextBoxColumn Status;
-        private DataGridViewTextBoxColumn FinishDate;
-        private DataGridViewTextBoxColumn StartDate;
-        private DataGridViewTextBoxColumn CreateDate;
-        private DataGridViewTextBoxColumn Description;
-        private DataGridViewTextBoxColumn colName;
         private DataGridView dtgView;
         private Label label2;
         private ComboBox listStatus;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn CreateDate;
+        private DataGridViewTextBoxColumn StartDate;
+        private DataGridViewTextBoxColumn FinishDate;
+        private DataGridViewTextBoxColumn Status;
     }
 }

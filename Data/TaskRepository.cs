@@ -14,6 +14,7 @@ namespace TasksWithBD.Data
         private ITask MapTask(SqlDataReader reader)
         {
             var task = new SimpleTask(
+                id: (int)reader["Id"],
                 name: reader["Name"].ToString(),
                 description: reader["Description"].ToString(),
                 createDate: (DateTime)reader["CreateDate"],
@@ -64,7 +65,7 @@ namespace TasksWithBD.Data
         {
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT Name, Description, CreateDate, StartDate, FinishDate, Status FROM Tasks ORDER BY Id DESC";
+            cmd.CommandText = "SELECT Id, Name, Description, CreateDate, StartDate, FinishDate, Status FROM Tasks ORDER BY Id DESC";
             List<ITask> list = new List<ITask>();
 
             try
