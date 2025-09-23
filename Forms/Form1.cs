@@ -3,6 +3,7 @@ using TasksWithBD.Data;
 using TasksWithBD.Entities;
 using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
+using TasksWithBD.Forms;
 using TasksWithBD.Services;
 
 namespace TasksWithBD
@@ -37,23 +38,6 @@ namespace TasksWithBD
             return listTasks;
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            var task = new SimpleTask
-            {
-                Name = txtName.Text,
-                Description = txtDescription.Text,
-                StartDate = dtStartDate.Value,
-                Status = OrderStatus.Pending
-
-            };
-
-            _taskService.CreateTask(task);
-
-            Clear();
-
-        }
-
         private void btnList_Click(object sender, EventArgs e)
         {
             dtgView.DataSource = (List<ITask>)LoadTasks();
@@ -62,29 +46,10 @@ namespace TasksWithBD
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int outIdTask;
-            int.TryParse(txtIdSelect.Text, out outIdTask);
-            _taskService.DeleteTask(outIdTask);
-        }
+            //int outIdTask;
+            //int.TryParse(txtIdSelect.Text, out outIdTask);
 
-        private void btnSelect_Click(object sender, EventArgs e)
-        {
-            Clear();
-
-            int outIdTask;
-            int.TryParse(txtIdSelect.Text, out outIdTask);
-
-            ITask task = _taskService.GetTaskById(outIdTask);
-
-            if (task != null)
-            {
-                txtName.Text = task.Name;
-                txtDescription.Text = task.Description;
-                dtStartDate.Value = task.StartDate;
-                listStatus.SelectedItem = task.Status;
-            }
-
-            listStatus.Enabled = true;
+            _taskService.DeleteTask(_currentTaskId);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -107,22 +72,10 @@ namespace TasksWithBD
 
         }
 
-        private void txtIdSelect_TextChanged(object sender, EventArgs e)
-        {
-            if (txtIdSelect.Text != null)
-            {
-                btnCreate.Enabled = false;
-            }
-            else
-            {
-                btnCreate.Enabled = true;
-            }
-        }
-
         private void dtgView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            if(index >= 0)
+            if (index >= 0)
             {
                 DataGridViewRow selectedRow = dtgView.Rows[index];
                 _currentTaskId = (int)selectedRow.Cells[0].Value;
@@ -130,9 +83,20 @@ namespace TasksWithBD
                 txtDescription.Text = selectedRow.Cells[2].Value.ToString();
                 dtStartDate.Text = selectedRow.Cells[4].Value.ToString();
                 listStatus.Text = selectedRow.Cells[6].Value.ToString();
-            }
-            
 
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+
+
+            }
+
+
+        }
+
+        private void taskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
         }
     }
 }
