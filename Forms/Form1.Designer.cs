@@ -53,6 +53,7 @@
             menuStrip1 = new MenuStrip();
             newToolStripMenuItem = new ToolStripMenuItem();
             taskToolStripMenuItem = new ToolStripMenuItem();
+            btnSave = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // txtName
             // 
+            txtName.Enabled = false;
             txtName.Location = new Point(103, 46);
             txtName.Name = "txtName";
             txtName.Size = new Size(251, 23);
@@ -67,6 +69,7 @@
             // 
             // txtDescription
             // 
+            txtDescription.Enabled = false;
             txtDescription.Location = new Point(103, 93);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
@@ -75,6 +78,7 @@
             // 
             // dtStartDate
             // 
+            dtStartDate.Enabled = false;
             dtStartDate.Format = DateTimePickerFormat.Short;
             dtStartDate.Location = new Point(103, 188);
             dtStartDate.Name = "dtStartDate";
@@ -219,6 +223,7 @@
             // 
             // listStatus
             // 
+            listStatus.Enabled = false;
             listStatus.FormattingEnabled = true;
             listStatus.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled" });
             listStatus.Location = new Point(446, 46);
@@ -262,11 +267,23 @@
             taskToolStripMenuItem.Text = "Task";
             taskToolStripMenuItem.Click += taskToolStripMenuItem_Click;
             // 
+            // btnSave
+            // 
+            btnSave.Enabled = false;
+            btnSave.Location = new Point(527, 250);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(75, 23);
+            btnSave.TabIndex = 22;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(966, 647);
+            Controls.Add(btnSave);
             Controls.Add(menuStrip1);
             Controls.Add(listStatus);
             Controls.Add(label2);
@@ -318,5 +335,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem taskToolStripMenuItem;
+        private Button btnSave;
     }
 }

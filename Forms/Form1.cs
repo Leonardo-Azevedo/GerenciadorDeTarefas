@@ -55,20 +55,30 @@ namespace TasksWithBD
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-            //int outIdTask;
-            //int.TryParse(txtIdSelect.Text, out outIdTask);
+            if(btnEdit.Text == "Edit")
+            {
+                dtgView.Enabled = false;
+                btnEdit.Text = "Cancel";
+                btnDelete.Enabled = false;
+                btnSave.Enabled = true;
 
-            ITask taskUp = _taskService.GetTaskById(_currentTaskId);
+                txtName.Enabled = true;
+                txtDescription.Enabled = true;
+                dtStartDate.Enabled = true;
+                listStatus.Enabled = true;
 
-            taskUp.Id = _currentTaskId;
-            taskUp.Name = txtName.Text;
-            taskUp.Description = txtDescription.Text;
-            taskUp.StartDate = dtStartDate.Value;
-            taskUp.Status = (OrderStatus)listStatus.SelectedItem;
+            }
+            else
+            {
+                dtgView.Enabled = true;
+                btnEdit.Text = "Edit";
+                btnSave.Enabled = false;
 
-            _taskService.UpdateTask(taskUp);
-
-            Clear();
+                txtName.Enabled = false;
+                txtDescription.Enabled = false;
+                dtStartDate.Enabled = false;
+                listStatus.Enabled = false;
+            }
 
         }
 
@@ -97,6 +107,38 @@ namespace TasksWithBD
         {
             Form2 form2 = new Form2();
             form2.Show();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //int outIdTask;
+            //int.TryParse(txtIdSelect.Text, out outIdTask);
+
+            //Busca task pelo ID e preenche o campos
+            ITask taskUp = _taskService.GetTaskById(_currentTaskId);
+
+            taskUp.Id = _currentTaskId;
+            taskUp.Name = txtName.Text;
+            taskUp.Description = txtDescription.Text;
+            taskUp.StartDate = dtStartDate.Value;
+            taskUp.Status = (OrderStatus)listStatus.SelectedItem;
+
+            //Realiza o update
+            _taskService.UpdateTask(taskUp);
+
+
+            //Limpa campos
+            Clear();
+
+            //Recarrega a lista de tasks
+            dtgView.DataSource = (List<ITask>)LoadTasks();
+
+            //Altera o botão Cancel para Edit novamente
+            if (btnEdit.Text == "Cancel")
+            {
+                btnEdit.Text = "Edit";
+                dtgView.Enabled = true;
+            }
         }
     }
 }

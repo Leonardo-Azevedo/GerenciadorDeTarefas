@@ -52,7 +52,17 @@ namespace TasksWithBD.Services
         {
             if (task.Status == OrderStatus.Finished && task.FinishDate == null)
             {
-                task.FinishDate = DateTime.Now.Date;
+                //Se data inicio for maior que data final, data final será a mesma da data inicio
+                //Criar mensageria ao invés de atribuir automaticamente a data
+                if(task.StartDate > DateTime.Now.Date)
+                {
+                    task.FinishDate = task.StartDate;
+                }
+                else
+                {
+                    task.FinishDate = DateTime.Now.Date;
+                }
+                   
             }
 
                 _taskRepository.Update(task);
