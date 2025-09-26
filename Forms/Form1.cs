@@ -38,9 +38,26 @@ namespace TasksWithBD
             return listTasks;
         }
 
+        private IEnumerable<ITask> ListSearchName(string name)
+        {
+            IEnumerable<ITask> listTasksName = new List<ITask>();
+            listTasksName = _taskService.ListSearchName(name);
+
+            return listTasksName;
+        }
+
         private void btnList_Click(object sender, EventArgs e)
         {
-            dtgView.DataSource = (List<ITask>)LoadTasks();
+            if(txtSearch.Text == string.Empty)
+            {
+                dtgView.DataSource = (List<ITask>)LoadTasks();
+            }
+            else
+            {
+                dtgView.DataSource = (List<ITask>)ListSearchName(txtSearch.Text);
+            }
+            
+            
 
         }
 
@@ -73,6 +90,7 @@ namespace TasksWithBD
                 dtgView.Enabled = true;
                 btnEdit.Text = "Edit";
                 btnSave.Enabled = false;
+                btnDelete.Enabled = true;
 
                 txtName.Enabled = false;
                 txtDescription.Enabled = false;
@@ -129,6 +147,12 @@ namespace TasksWithBD
 
             //Limpa campos
             Clear();
+
+            //Desativa os campos novamente
+            txtName.Enabled = false;
+            txtDescription.Enabled = false;
+            dtStartDate.Enabled = false;
+            listStatus.Enabled = false;
 
             //Recarrega a lista de tasks
             dtgView.DataSource = (List<ITask>)LoadTasks();

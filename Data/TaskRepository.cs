@@ -162,7 +162,7 @@ namespace TasksWithBD.Data
 
             cmd.CommandText = "SELECT * FROM Tasks WHERE Id = @Id";
 
-            cmd.Parameters.AddWithValue("Id", id);
+            cmd.Parameters.AddWithValue("@Id", id);
 
             try
             {
@@ -199,7 +199,45 @@ namespace TasksWithBD.Data
             }
 
         }
-    
-        
+
+        public IEnumerable<ITask> ListSearchName(string name)
+        {
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = "SELECT * FROM Tasks WHERE Name LIKE @Name";
+
+            cmd.Parameters.AddWithValue("@Name", "%" + name + "%");
+
+
+            List<ITask> list = new List<ITask>();
+
+            try
+            {
+                //conectar no banco
+                cmd.Connection = connection.connect();
+                //executar o comando
+                SqlDataReader reader = cmd.ExecuteReader();
+                //percorrer a listagem
+                while (reader.Read())
+                {
+                    list.Add(MapTask(reader));
+                }
+                reader.Close();
+                //desconectar do banco
+                connection.disconnect();
+                //mostrar mensagem
+
+            }
+            catch (Exception ex)
+            {
+                this.message = "Error!";
+                //clear parameters
+                cmd.Parameters.Clear();
+            }
+
+            return list;
+        }
+
+
     }
 }

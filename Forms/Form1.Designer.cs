@@ -54,15 +54,21 @@
             newToolStripMenuItem = new ToolStripMenuItem();
             taskToolStripMenuItem = new ToolStripMenuItem();
             btnSave = new Button();
+            txtSearch = new TextBox();
+            listStatusSearch = new ComboBox();
+            dtFilterStartDate = new DateTimePicker();
+            dtFilterEndDate = new DateTimePicker();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtName
             // 
             txtName.Enabled = false;
-            txtName.Location = new Point(103, 46);
+            txtName.Location = new Point(14, 28);
             txtName.Name = "txtName";
             txtName.Size = new Size(251, 23);
             txtName.TabIndex = 0;
@@ -70,17 +76,17 @@
             // txtDescription
             // 
             txtDescription.Enabled = false;
-            txtDescription.Location = new Point(103, 93);
+            txtDescription.Location = new Point(14, 81);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(251, 71);
+            txtDescription.Size = new Size(251, 74);
             txtDescription.TabIndex = 1;
             // 
             // dtStartDate
             // 
             dtStartDate.Enabled = false;
             dtStartDate.Format = DateTimePickerFormat.Short;
-            dtStartDate.Location = new Point(103, 188);
+            dtStartDate.Location = new Point(301, 81);
             dtStartDate.Name = "dtStartDate";
             dtStartDate.Size = new Size(129, 23);
             dtStartDate.TabIndex = 2;
@@ -89,7 +95,7 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(58, 49);
+            lblName.Location = new Point(14, 10);
             lblName.Name = "lblName";
             lblName.Size = new Size(39, 15);
             lblName.TabIndex = 3;
@@ -98,7 +104,7 @@
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(30, 96);
+            lblDescription.Location = new Point(14, 63);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(67, 15);
             lblDescription.TabIndex = 4;
@@ -107,7 +113,7 @@
             // lblStartDate
             // 
             lblStartDate.AutoSize = true;
-            lblStartDate.Location = new Point(39, 194);
+            lblStartDate.Location = new Point(301, 63);
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(58, 15);
             lblStartDate.TabIndex = 5;
@@ -115,18 +121,18 @@
             // 
             // btnList
             // 
-            btnList.Location = new Point(433, 612);
+            btnList.Location = new Point(773, 98);
             btnList.Name = "btnList";
             btnList.Size = new Size(75, 23);
             btnList.TabIndex = 8;
-            btnList.Text = "List tasks";
+            btnList.Text = "Refresh";
             btnList.UseVisualStyleBackColor = true;
             btnList.Click += btnList_Click;
             // 
             // btnDelete
             // 
             btnDelete.Enabled = false;
-            btnDelete.Location = new Point(446, 250);
+            btnDelete.Location = new Point(773, 589);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 12;
@@ -137,7 +143,7 @@
             // btnEdit
             // 
             btnEdit.Enabled = false;
-            btnEdit.Location = new Point(365, 250);
+            btnEdit.Location = new Point(692, 589);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(75, 23);
             btnEdit.TabIndex = 13;
@@ -152,11 +158,11 @@
             dtgView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgView.Columns.AddRange(new DataGridViewColumn[] { Id, colName, Description, CreateDate, StartDate, FinishDate, Status });
             dtgView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            dtgView.Location = new Point(12, 292);
+            dtgView.Location = new Point(12, 127);
             dtgView.MultiSelect = false;
             dtgView.Name = "dtgView";
             dtgView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dtgView.Size = new Size(936, 314);
+            dtgView.Size = new Size(836, 314);
             dtgView.TabIndex = 9;
             dtgView.CellClick += dtgView_CellClick;
             // 
@@ -215,7 +221,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(401, 49);
+            label2.Location = new Point(301, 10);
             label2.Name = "label2";
             label2.Size = new Size(39, 15);
             label2.TabIndex = 19;
@@ -226,7 +232,7 @@
             listStatus.Enabled = false;
             listStatus.FormattingEnabled = true;
             listStatus.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled" });
-            listStatus.Location = new Point(446, 46);
+            listStatus.Location = new Point(301, 28);
             listStatus.Name = "listStatus";
             listStatus.Size = new Size(129, 23);
             listStatus.TabIndex = 20;
@@ -249,7 +255,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(966, 24);
+            menuStrip1.Size = new Size(860, 24);
             menuStrip1.TabIndex = 21;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -263,14 +269,14 @@
             // taskToolStripMenuItem
             // 
             taskToolStripMenuItem.Name = "taskToolStripMenuItem";
-            taskToolStripMenuItem.Size = new Size(96, 22);
+            taskToolStripMenuItem.Size = new Size(180, 22);
             taskToolStripMenuItem.Text = "Task";
             taskToolStripMenuItem.Click += taskToolStripMenuItem_Click;
             // 
             // btnSave
             // 
             btnSave.Enabled = false;
-            btnSave.Location = new Point(527, 250);
+            btnSave.Location = new Point(611, 589);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 22;
@@ -278,25 +284,74 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(12, 98);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Search...";
+            txtSearch.Size = new Size(373, 23);
+            txtSearch.TabIndex = 23;
+            // 
+            // listStatusSearch
+            // 
+            listStatusSearch.FormattingEnabled = true;
+            listStatusSearch.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled" });
+            listStatusSearch.Location = new Point(410, 98);
+            listStatusSearch.Name = "listStatusSearch";
+            listStatusSearch.Size = new Size(121, 23);
+            listStatusSearch.TabIndex = 24;
+            listStatusSearch.Tag = "";
+            // 
+            // dtFilterStartDate
+            // 
+            dtFilterStartDate.Format = DateTimePickerFormat.Short;
+            dtFilterStartDate.Location = new Point(547, 98);
+            dtFilterStartDate.Name = "dtFilterStartDate";
+            dtFilterStartDate.Size = new Size(105, 23);
+            dtFilterStartDate.TabIndex = 25;
+            dtFilterStartDate.Value = new DateTime(1800, 1, 1, 0, 0, 0, 0);
+            // 
+            // dtFilterEndDate
+            // 
+            dtFilterEndDate.Format = DateTimePickerFormat.Short;
+            dtFilterEndDate.Location = new Point(658, 98);
+            dtFilterEndDate.Name = "dtFilterEndDate";
+            dtFilterEndDate.Size = new Size(105, 23);
+            dtFilterEndDate.TabIndex = 26;
+            dtFilterEndDate.Value = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            // 
+            // panel1
+            // 
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(txtDescription);
+            panel1.Controls.Add(lblStartDate);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(lblDescription);
+            panel1.Controls.Add(listStatus);
+            panel1.Controls.Add(lblName);
+            panel1.Controls.Add(dtStartDate);
+            panel1.Controls.Add(txtName);
+            panel1.Location = new Point(12, 447);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(449, 171);
+            panel1.TabIndex = 27;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(966, 647);
+            ClientSize = new Size(860, 624);
+            Controls.Add(panel1);
+            Controls.Add(dtFilterEndDate);
+            Controls.Add(dtFilterStartDate);
+            Controls.Add(listStatusSearch);
+            Controls.Add(txtSearch);
             Controls.Add(btnSave);
             Controls.Add(menuStrip1);
-            Controls.Add(listStatus);
-            Controls.Add(label2);
             Controls.Add(btnEdit);
             Controls.Add(btnDelete);
             Controls.Add(dtgView);
             Controls.Add(btnList);
-            Controls.Add(lblStartDate);
-            Controls.Add(lblDescription);
-            Controls.Add(lblName);
-            Controls.Add(dtStartDate);
-            Controls.Add(txtDescription);
-            Controls.Add(txtName);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -305,6 +360,8 @@
             contextMenuStrip1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -336,5 +393,10 @@
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem taskToolStripMenuItem;
         private Button btnSave;
+        private TextBox txtSearch;
+        private ComboBox listStatusSearch;
+        private DateTimePicker dtFilterStartDate;
+        private DateTimePicker dtFilterEndDate;
+        private Panel panel1;
     }
 }

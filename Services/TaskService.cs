@@ -73,6 +73,11 @@ namespace TasksWithBD.Services
             return _taskRepository.GetTaskById(id);
 
         }
+
+        public IEnumerable<ITask> ListSearchName(string name)
+        {
+            return _taskRepository.ListSearchName(name);
+        }
     
     }
 }
