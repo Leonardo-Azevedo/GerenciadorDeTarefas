@@ -269,7 +269,7 @@
             // taskToolStripMenuItem
             // 
             taskToolStripMenuItem.Name = "taskToolStripMenuItem";
-            taskToolStripMenuItem.Size = new Size(180, 22);
+            taskToolStripMenuItem.Size = new Size(96, 22);
             taskToolStripMenuItem.Text = "Task";
             taskToolStripMenuItem.Click += taskToolStripMenuItem_Click;
             // 
@@ -295,7 +295,7 @@
             // listStatusSearch
             // 
             listStatusSearch.FormattingEnabled = true;
-            listStatusSearch.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled" });
+            listStatusSearch.Items.AddRange(new object[] { "Pending", "InProgress", "Finished", "Cancelled", "None" });
             listStatusSearch.Location = new Point(410, 98);
             listStatusSearch.Name = "listStatusSearch";
             listStatusSearch.Size = new Size(121, 23);

@@ -212,21 +212,14 @@ namespace TasksWithBD.Data
 
                 cmd.Parameters.AddWithValue("@Name", "%" + name + "%");
             }
-            else if(status != null) //Filtragem pelo status
+            if(status != null) //Filtragem pelo status
             {
                 //cmd.CommandText = "SELECT * FROM Tasks WHERE Status LIKE @Status";
                 cmd.CommandText += " AND Status = @Status";
 
                 cmd.Parameters.AddWithValue("@Status", status);
             }
-            else if(startDate != null ) //Filtragem pela data de inicio
-            {
-                //cmd.CommandText = "SELECT * FROM Tasks WHERE StartDate = @StartDate";
-                cmd.CommandText += " AND StartDate = @StartDate";
-
-                cmd.Parameters.AddWithValue("@StartDate", startDate);
-            }
-            else if (startDate != null &&  endDate != null) //Filtragem entre data de inicio e fim selecionada
+            if (startDate != null &&  endDate != null) //Filtragem entre data de inicio e fim selecionada
             {
                 //cmd.CommandText = "SELECT * FROM Tasks WHERE StartDate >= @StartDate AND StartDate < @EndDate";
                 cmd.CommandText += " AND StartDate >= @StartDate AND StartDate < @EndDate";

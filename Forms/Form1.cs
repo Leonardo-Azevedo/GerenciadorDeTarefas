@@ -20,6 +20,7 @@ namespace TasksWithBD
             dtgView.AutoGenerateColumns = false;
             listStatus.DataSource = Enum.GetValues(typeof(OrderStatus));
             listStatusSearch.DataSource = Enum.GetValues(typeof(OrderStatus));
+            listStatusSearch.SelectedItem = null;
 
         }
 
@@ -29,6 +30,8 @@ namespace TasksWithBD
             txtDescription.Text = string.Empty;
             dtStartDate.Text = string.Empty;
             listStatus.Text = string.Empty;
+            txtSearch.Text = string.Empty;
+            listStatusSearch.Text = null;
         }
 
         private IEnumerable<ITask> LoadTasks()
@@ -58,17 +61,23 @@ namespace TasksWithBD
             //    dtgView.DataSource = (List<ITask>)ListSearchName(txtSearch.Text);
             //}
 
+            //Se texto digitado na barra de pesquisa for vazio, atribuído null
             if(txtSearch.Text == string.Empty)
             {
                 txtSearch.Text = null;
             }
 
-            if(listStatusSearch.Text == string.Empty)
+            //Se Status for null faz a chamada sem o envio do status para não dar problema na conversão do OrderStatus, se tiver status, faz a conversão e envia
+            if(listStatusSearch.SelectedItem == null)
             {
-                listStatusSearch.Text = null;
+                dtgView.DataSource = ListWithFilter(name: txtSearch.Text, startDate: dtFilterStartDate.Value, endDate: dtFilterEndDate.Value).ToList();
+            }
+            else
+            {
+                dtgView.DataSource = ListWithFilter(name: txtSearch.Text, status: (OrderStatus)listStatusSearch.SelectedItem, startDate: dtFilterStartDate.Value, endDate: dtFilterEndDate.Value).ToList();
             }
 
-            dtgView.DataSource = ListWithFilter(name: txtSearch.Text, status: (OrderStatus)listStatusSearch.SelectedItem, startDate: dtFilterStartDate.Value, endDate: dtFilterEndDate.Value).ToList();
+            Clear();
 
 
         }
