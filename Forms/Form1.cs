@@ -19,6 +19,7 @@ namespace TasksWithBD
             _taskService = new TaskService(repository);
             dtgView.AutoGenerateColumns = false;
             listStatus.DataSource = Enum.GetValues(typeof(OrderStatus));
+            listStatusSearch.DataSource = Enum.GetValues(typeof(OrderStatus));
 
         }
 
@@ -38,26 +39,37 @@ namespace TasksWithBD
             return listTasks;
         }
 
-        private IEnumerable<ITask> ListSearchName(string name)
+        private IEnumerable<ITask> ListWithFilter(string name = null, OrderStatus? status = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            IEnumerable<ITask> listTasksName = new List<ITask>();
-            listTasksName = _taskService.ListSearchName(name);
+            IEnumerable<ITask> listWithFilter = new List<ITask>();
+            listWithFilter = _taskService.ListWithFilter(name, status, startDate, endDate);
 
-            return listTasksName;
+            return listWithFilter;
         }
 
         private void btnList_Click(object sender, EventArgs e)
         {
+            //if(txtSearch.Text == string.Empty)
+            //{
+            //    dtgView.DataSource = (List<ITask>)LoadTasks();
+            //}
+            //else
+            //{
+            //    dtgView.DataSource = (List<ITask>)ListSearchName(txtSearch.Text);
+            //}
+
             if(txtSearch.Text == string.Empty)
             {
-                dtgView.DataSource = (List<ITask>)LoadTasks();
+                txtSearch.Text = null;
             }
-            else
+
+            if(listStatusSearch.Text == string.Empty)
             {
-                dtgView.DataSource = (List<ITask>)ListSearchName(txtSearch.Text);
+                listStatusSearch.Text = null;
             }
-            
-            
+
+            dtgView.DataSource = ListWithFilter(name: txtSearch.Text, status: (OrderStatus)listStatusSearch.SelectedItem, startDate: dtFilterStartDate.Value, endDate: dtFilterEndDate.Value).ToList();
+
 
         }
 

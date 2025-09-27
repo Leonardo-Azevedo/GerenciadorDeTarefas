@@ -74,9 +74,9 @@ namespace TasksWithBD.Services
 
         }
 
-        public IEnumerable<ITask> ListSearchName(string name)
+        public IEnumerable<ITask> ListWithFilter(string name = null, OrderStatus? status = null, DateTime? startDate = null, DateTime? endDate = null)
         {
-            return _taskRepository.ListSearchName(name);
+            return _taskRepository.ListWithFilter(name, status, startDate, endDate);
         }
     
     }

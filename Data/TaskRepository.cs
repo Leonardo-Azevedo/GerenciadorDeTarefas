@@ -200,14 +200,42 @@ namespace TasksWithBD.Data
 
         }
 
-        public IEnumerable<ITask> ListSearchName(string name)
+        public IEnumerable<ITask> ListWithFilter(string name = null, OrderStatus? status = null, DateTime? startDate = null, DateTime? endDate = null)
         {
             SqlCommand cmd = new SqlCommand();
 
-            cmd.CommandText = "SELECT * FROM Tasks WHERE Name LIKE @Name";
+            cmd.CommandText = "SELECT * FROM Tasks WHERE 1=1";
 
-            cmd.Parameters.AddWithValue("@Name", "%" + name + "%");
+            if(name !=  null) //Filtragem pelo nome
+            {
+                cmd.CommandText += " AND Name LIKE @Name";
 
+                cmd.Parameters.AddWithValue("@Name", "%" + name + "%");
+            }
+            else if(status != null) //Filtragem pelo status
+            {
+                //cmd.CommandText = "SELECT * FROM Tasks WHERE Status LIKE @Status";
+                cmd.CommandText += " AND Status = @Status";
+
+                cmd.Parameters.AddWithValue("@Status", status);
+            }
+            else if(startDate != null ) //Filtragem pela data de inicio
+            {
+                //cmd.CommandText = "SELECT * FROM Tasks WHERE StartDate = @StartDate";
+                cmd.CommandText += " AND StartDate = @StartDate";
+
+                cmd.Parameters.AddWithValue("@StartDate", startDate);
+            }
+            else if (startDate != null &&  endDate != null) //Filtragem entre data de inicio e fim selecionada
+            {
+                //cmd.CommandText = "SELECT * FROM Tasks WHERE StartDate >= @StartDate AND StartDate < @EndDate";
+                cmd.CommandText += " AND StartDate >= @StartDate AND StartDate < @EndDate";
+
+                cmd.Parameters.AddWithValue("@StartDate", startDate);
+                cmd.Parameters.AddWithValue("@EndDate", endDate);
+            }
+
+            cmd.CommandText += " ORDER BY Id DESC";
 
             List<ITask> list = new List<ITask>();
 
@@ -237,7 +265,5 @@ namespace TasksWithBD.Data
 
             return list;
         }
-
-
     }
 }
