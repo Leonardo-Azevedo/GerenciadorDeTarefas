@@ -78,6 +78,12 @@ namespace TasksWithBD.Services
         {
             return _taskRepository.ListWithFilter(name, status, startDate, endDate);
         }
-    
+
+        public void ExportToExcel(IEnumerable<ITask> listTasks)
+        {
+            _taskRepository.ExportToExcel(listTasks);
+        }
+
+
     }
 }

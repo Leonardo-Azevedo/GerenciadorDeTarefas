@@ -1,4 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
+using OfficeOpenXml;
+using System.Data;
+using System.IO.Packaging;
 using TasksWithBD.Entities;
 using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
@@ -257,6 +260,52 @@ namespace TasksWithBD.Data
             }
 
             return list;
+        }
+
+        public void ExportToExcel(IEnumerable<ITask> listTasks)
+        {
+            ExcelPackage.License.SetNonCommercialPersonal("Leonardo");
+
+            var file = new FileInfo(@"C:\Users\ADM\Desktop\ExportTasks.xlsx");
+            using (var archive = new ExcelPackage(file))
+            {
+                var sheet = archive.Workbook.Worksheets.Add("Sheet1");
+                sheet.Cells["A1"].Value = "ID";
+                sheet.Cells["B1"].Value = "NAME";
+                sheet.Cells["C1"].Value = "DESCRIPTON";
+                sheet.Cells["D1"].Value = "CREATE DATE";
+                sheet.Cells["E1"].Value = "START DATE";
+                sheet.Cells["F1"].Value = "FINISH DATE";
+                sheet.Cells["G1"].Value = "STATUS";
+
+                int row = 2;
+
+                foreach (var task in listTasks)
+                {
+                    
+
+                    sheet.Cells["A" + row].Value = task.Id;
+                    sheet.Cells["B" + row].Value = task.Name;
+                    sheet.Cells["C" + row].Value = task.Description;
+                    sheet.Cells["D" + row].Value = task.CreateDate;
+                    sheet.Cells["E" + row].Value = task.StartDate;
+                    sheet.Cells["F" + row].Value = task.FinishDate;
+                    sheet.Cells["G" + row].Value = task.Status;
+
+                    row++;
+                }
+
+                //Estilização das colunas
+                sheet.Cells["A1:G1"].Style.Font.Bold = true;
+                sheet.Cells[sheet.Dimension.Address].AutoFitColumns();
+                sheet.Column(4).Style.Numberformat.Format = "dd/MM/yyyy";
+                sheet.Column(5).Style.Numberformat.Format = "dd/MM/yyyy";
+                sheet.Column(6).Style.Numberformat.Format = "dd/MM/yyyy";
+
+                archive.Save();
+            }
+
+
         }
     }
 }

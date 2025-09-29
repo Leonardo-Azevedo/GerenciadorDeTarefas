@@ -5,6 +5,7 @@ using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
 using TasksWithBD.Forms;
 using TasksWithBD.Services;
+using OfficeOpenXml;
 
 namespace TasksWithBD
 {
@@ -62,13 +63,13 @@ namespace TasksWithBD
             //}
 
             //Se texto digitado na barra de pesquisa for vazio, atribuído null
-            if(txtSearch.Text == string.Empty)
+            if (txtSearch.Text == string.Empty)
             {
                 txtSearch.Text = null;
             }
 
             //Se Status for null faz a chamada sem o envio do status para não dar problema na conversão do OrderStatus, se tiver status, faz a conversão e envia
-            if(listStatusSearch.SelectedItem == null)
+            if (listStatusSearch.SelectedItem == null)
             {
                 dtgView.DataSource = ListWithFilter(name: txtSearch.Text, startDate: dtFilterStartDate.Value, endDate: dtFilterEndDate.Value).ToList();
             }
@@ -93,7 +94,7 @@ namespace TasksWithBD
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
-            if(btnEdit.Text == "Edit")
+            if (btnEdit.Text == "Edit")
             {
                 dtgView.Enabled = false;
                 btnEdit.Text = "Cancel";
@@ -184,6 +185,13 @@ namespace TasksWithBD
                 btnEdit.Text = "Edit";
                 dtgView.Enabled = true;
             }
+        }
+
+        private void exportToExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IEnumerable<ITask> listTasks = LoadTasks();
+            
+            _taskService.ExportToExcel(listTasks);
         }
     }
 }

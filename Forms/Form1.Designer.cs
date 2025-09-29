@@ -59,6 +59,8 @@
             dtFilterStartDate = new DateTimePicker();
             dtFilterEndDate = new DateTimePicker();
             panel1 = new Panel();
+            optionsToolStripMenuItem = new ToolStripMenuItem();
+            exportToExcelToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -252,7 +254,7 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ButtonHighlight;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, optionsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(860, 24);
@@ -336,6 +338,20 @@
             panel1.Size = new Size(449, 171);
             panel1.TabIndex = 27;
             // 
+            // optionsToolStripMenuItem
+            // 
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportToExcelToolStripMenuItem });
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            optionsToolStripMenuItem.Size = new Size(61, 20);
+            optionsToolStripMenuItem.Text = "Options";
+            // 
+            // exportToExcelToolStripMenuItem
+            // 
+            exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
+            exportToExcelToolStripMenuItem.Size = new Size(180, 22);
+            exportToExcelToolStripMenuItem.Text = "Export to excel";
+            exportToExcelToolStripMenuItem.Click += exportToExcelToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -398,5 +414,7 @@
         private DateTimePicker dtFilterStartDate;
         private DateTimePicker dtFilterEndDate;
         private Panel panel1;
+        private ToolStripMenuItem optionsToolStripMenuItem;
+        private ToolStripMenuItem exportToExcelToolStripMenuItem;
     }
 }
