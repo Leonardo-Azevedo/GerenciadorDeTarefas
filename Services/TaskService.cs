@@ -59,7 +59,7 @@ namespace TasksWithBD.Services
                     task.FinishDate = task.StartDate;
                 }
                 else
-                {
+                { 
                     task.FinishDate = DateTime.Now.Date;
                 }
                    

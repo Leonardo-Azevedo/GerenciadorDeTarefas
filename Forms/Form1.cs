@@ -164,8 +164,8 @@ namespace TasksWithBD
             taskUp.Status = (OrderStatus)listStatus.SelectedItem;
 
             //Realiza o update
-            _taskService.UpdateTask(taskUp);
-
+            var result = _taskService.UpdateTask(taskUp);
+            
 
             //Limpa campos
             Clear();

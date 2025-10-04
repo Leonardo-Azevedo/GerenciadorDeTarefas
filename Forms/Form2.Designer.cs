@@ -134,7 +134,7 @@
             Controls.Add(lblCName);
             Name = "Form2";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form2";
+            Text = "New task";
             ResumeLayout(false);
             PerformLayout();
         }

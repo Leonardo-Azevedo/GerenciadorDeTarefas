@@ -53,14 +53,14 @@
             menuStrip1 = new MenuStrip();
             newToolStripMenuItem = new ToolStripMenuItem();
             taskToolStripMenuItem = new ToolStripMenuItem();
+            optionsToolStripMenuItem = new ToolStripMenuItem();
+            exportToExcelToolStripMenuItem = new ToolStripMenuItem();
             btnSave = new Button();
             txtSearch = new TextBox();
             listStatusSearch = new ComboBox();
             dtFilterStartDate = new DateTimePicker();
             dtFilterEndDate = new DateTimePicker();
             panel1 = new Panel();
-            optionsToolStripMenuItem = new ToolStripMenuItem();
-            exportToExcelToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -170,12 +170,12 @@
             // 
             // Id
             // 
+            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Id.DataPropertyName = "Id";
             Id.Frozen = true;
             Id.HeaderText = "Id";
             Id.Name = "Id";
             Id.Visible = false;
-            Id.Width = 42;
             // 
             // colName
             // 
@@ -187,38 +187,39 @@
             // 
             // Description
             // 
+            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             Description.DataPropertyName = "Description";
             Description.HeaderText = "Description";
             Description.Name = "Description";
-            Description.Width = 92;
+            Description.Width = 250;
             // 
             // CreateDate
             // 
+            CreateDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             CreateDate.DataPropertyName = "CreateDate";
             CreateDate.HeaderText = "Create Date";
             CreateDate.Name = "CreateDate";
-            CreateDate.Width = 93;
             // 
             // StartDate
             // 
+            StartDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             StartDate.DataPropertyName = "StartDate";
             StartDate.HeaderText = "Start Date";
             StartDate.Name = "StartDate";
-            StartDate.Width = 83;
             // 
             // FinishDate
             // 
+            FinishDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             FinishDate.DataPropertyName = "FinishDate";
             FinishDate.HeaderText = "Finish Date";
             FinishDate.Name = "FinishDate";
-            FinishDate.Width = 90;
             // 
             // Status
             // 
+            Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Status.DataPropertyName = "Status";
             Status.HeaderText = "Status";
             Status.Name = "Status";
-            Status.Width = 64;
             // 
             // label2
             // 
@@ -274,6 +275,20 @@
             taskToolStripMenuItem.Size = new Size(96, 22);
             taskToolStripMenuItem.Text = "Task";
             taskToolStripMenuItem.Click += taskToolStripMenuItem_Click;
+            // 
+            // optionsToolStripMenuItem
+            // 
+            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportToExcelToolStripMenuItem });
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            optionsToolStripMenuItem.Size = new Size(61, 20);
+            optionsToolStripMenuItem.Text = "Options";
+            // 
+            // exportToExcelToolStripMenuItem
+            // 
+            exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
+            exportToExcelToolStripMenuItem.Size = new Size(152, 22);
+            exportToExcelToolStripMenuItem.Text = "Export to excel";
+            exportToExcelToolStripMenuItem.Click += exportToExcelToolStripMenuItem_Click;
             // 
             // btnSave
             // 
@@ -338,20 +353,6 @@
             panel1.Size = new Size(449, 171);
             panel1.TabIndex = 27;
             // 
-            // optionsToolStripMenuItem
-            // 
-            optionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exportToExcelToolStripMenuItem });
-            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            optionsToolStripMenuItem.Size = new Size(61, 20);
-            optionsToolStripMenuItem.Text = "Options";
-            // 
-            // exportToExcelToolStripMenuItem
-            // 
-            exportToExcelToolStripMenuItem.Name = "exportToExcelToolStripMenuItem";
-            exportToExcelToolStripMenuItem.Size = new Size(180, 22);
-            exportToExcelToolStripMenuItem.Text = "Export to excel";
-            exportToExcelToolStripMenuItem.Click += exportToExcelToolStripMenuItem_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -371,7 +372,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Prógon";
             ((System.ComponentModel.ISupportInitialize)dtgView).EndInit();
             contextMenuStrip1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
@@ -396,13 +397,6 @@
         private DataGridView dtgView;
         private Label label2;
         private ComboBox listStatus;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn colName;
-        private DataGridViewTextBoxColumn Description;
-        private DataGridViewTextBoxColumn CreateDate;
-        private DataGridViewTextBoxColumn StartDate;
-        private DataGridViewTextBoxColumn FinishDate;
-        private DataGridViewTextBoxColumn Status;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem novoToolStripMenuItem;
         private MenuStrip menuStrip1;
@@ -416,5 +410,12 @@
         private Panel panel1;
         private ToolStripMenuItem optionsToolStripMenuItem;
         private ToolStripMenuItem exportToExcelToolStripMenuItem;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn colName;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn CreateDate;
+        private DataGridViewTextBoxColumn StartDate;
+        private DataGridViewTextBoxColumn FinishDate;
+        private DataGridViewTextBoxColumn Status;
     }
 }
