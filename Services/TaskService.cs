@@ -6,6 +6,7 @@ using TasksWithBD.Data;
 using TasksWithBD.Entities;
 using TasksWithBD.Entities.Enums;
 using TasksWithBD.Entities.Interfaces;
+using TasksWithBD.Utils__Helpers_;
 
 namespace TasksWithBD.Services
 {
@@ -17,24 +18,32 @@ namespace TasksWithBD.Services
             _taskRepository = taskRepository;
         }
 
-        public void CreateTask(ITask task)
+        public ServiceResult CreateTask(ITask task)
         {
             task.CreateDate = DateTime.Now.Date;
 
             if (string.IsNullOrWhiteSpace(task.Name))
             {
                 //proibido task com nome vazio
-                throw new ArgumentException("Task name can not be null or empty.");
+                return new ServiceResult(false, "Task name can not be null or empty.");
             }
 
             if (task.StartDate > task.FinishDate)
             {
                 //não pode criar uma task onde o star começa depois do finish
-                throw new ArgumentException("Start date can't be greater than the finish date.");
+                return new ServiceResult(false, "Start date can't be greater than the finish date.");
             }
 
-
-            _taskRepository.Add(task);
+            try
+            {
+                _taskRepository.Add(task);
+                return new ServiceResult(true, "Task created!");
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult(false, $"Error updating task: {ex.Message}");
+            }
+            
         }
 
         public IEnumerable<ITask> ListAll()
@@ -48,7 +57,7 @@ namespace TasksWithBD.Services
             _taskRepository.Delete(id);
         }
 
-        public void UpdateTask(ITask task)
+        public ServiceResult UpdateTask(ITask task)
         {
             if (task.Status == OrderStatus.Finished && task.FinishDate == null)
             {
@@ -56,7 +65,7 @@ namespace TasksWithBD.Services
                 //Criar mensageria ao invés de atribuir automaticamente a data
                 if(task.StartDate > DateTime.Now.Date)
                 {
-                    task.FinishDate = task.StartDate;
+                    return new ServiceResult(false, "The end date is before the start date.");
                 }
                 else
                 { 
@@ -65,7 +74,15 @@ namespace TasksWithBD.Services
                    
             }
 
+            try
+            {
                 _taskRepository.Update(task);
+                return new ServiceResult(true, "Task updated successfully!");
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult(false, $"Error updating task: {ex.Message}");
+            }
         }
 
         public ITask GetTaskById(int id)

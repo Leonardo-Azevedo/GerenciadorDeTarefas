@@ -39,13 +39,6 @@
             btnDelete = new Button();
             btnEdit = new Button();
             dtgView = new DataGridView();
-            Id = new DataGridViewTextBoxColumn();
-            colName = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            CreateDate = new DataGridViewTextBoxColumn();
-            StartDate = new DataGridViewTextBoxColumn();
-            FinishDate = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
             label2 = new Label();
             listStatus = new ComboBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -61,6 +54,13 @@
             dtFilterStartDate = new DateTimePicker();
             dtFilterEndDate = new DateTimePicker();
             panel1 = new Panel();
+            Id = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            CreateDate = new DataGridViewTextBoxColumn();
+            StartDate = new DataGridViewTextBoxColumn();
+            FinishDate = new DataGridViewTextBoxColumn();
+            Status = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dtgView).BeginInit();
             contextMenuStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -167,59 +167,6 @@
             dtgView.Size = new Size(836, 314);
             dtgView.TabIndex = 9;
             dtgView.CellClick += dtgView_CellClick;
-            // 
-            // Id
-            // 
-            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Id.DataPropertyName = "Id";
-            Id.Frozen = true;
-            Id.HeaderText = "Id";
-            Id.Name = "Id";
-            Id.Visible = false;
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "Name";
-            colName.Frozen = true;
-            colName.HeaderText = "Name";
-            colName.Name = "colName";
-            colName.Width = 64;
-            // 
-            // Description
-            // 
-            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            Description.DataPropertyName = "Description";
-            Description.HeaderText = "Description";
-            Description.Name = "Description";
-            Description.Width = 250;
-            // 
-            // CreateDate
-            // 
-            CreateDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            CreateDate.DataPropertyName = "CreateDate";
-            CreateDate.HeaderText = "Create Date";
-            CreateDate.Name = "CreateDate";
-            // 
-            // StartDate
-            // 
-            StartDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            StartDate.DataPropertyName = "StartDate";
-            StartDate.HeaderText = "Start Date";
-            StartDate.Name = "StartDate";
-            // 
-            // FinishDate
-            // 
-            FinishDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            FinishDate.DataPropertyName = "FinishDate";
-            FinishDate.HeaderText = "Finish Date";
-            FinishDate.Name = "FinishDate";
-            // 
-            // Status
-            // 
-            Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Status.DataPropertyName = "Status";
-            Status.HeaderText = "Status";
-            Status.Name = "Status";
             // 
             // label2
             // 
@@ -352,6 +299,60 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(449, 171);
             panel1.TabIndex = 27;
+            // 
+            // Id
+            // 
+            Id.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Id.DataPropertyName = "Id";
+            Id.Frozen = true;
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.Visible = false;
+            // 
+            // colName
+            // 
+            colName.DataPropertyName = "Name";
+            colName.Frozen = true;
+            colName.HeaderText = "Name";
+            colName.Name = "colName";
+            colName.Width = 64;
+            // 
+            // Description
+            // 
+            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.Name = "Description";
+            Description.Width = 250;
+            // 
+            // CreateDate
+            // 
+            CreateDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            CreateDate.DataPropertyName = "CreateDate";
+            CreateDate.HeaderText = "Create Date";
+            CreateDate.Name = "CreateDate";
+            CreateDate.Visible = false;
+            // 
+            // StartDate
+            // 
+            StartDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            StartDate.DataPropertyName = "StartDate";
+            StartDate.HeaderText = "Start Date";
+            StartDate.Name = "StartDate";
+            // 
+            // FinishDate
+            // 
+            FinishDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            FinishDate.DataPropertyName = "FinishDate";
+            FinishDate.HeaderText = "Finish Date";
+            FinishDate.Name = "FinishDate";
+            // 
+            // Status
+            // 
+            Status.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Status.DataPropertyName = "Status";
+            Status.HeaderText = "Status";
+            Status.Name = "Status";
             // 
             // Form1
             // 

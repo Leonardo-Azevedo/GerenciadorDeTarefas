@@ -165,7 +165,10 @@ namespace TasksWithBD
 
             //Realiza o update
             var result = _taskService.UpdateTask(taskUp);
-            
+            if(result.Success == false)
+            {
+                MessageBox.Show(result.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             //Limpa campos
             Clear();

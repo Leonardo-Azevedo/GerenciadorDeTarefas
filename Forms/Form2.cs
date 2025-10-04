@@ -45,11 +45,19 @@ namespace TasksWithBD.Forms
 
             };
 
-            _taskService.CreateTask(task);
+            var result = _taskService.CreateTask(task);
+            if(result.Success == false)
+            {
+                MessageBox.Show(result.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Close();
+            }
 
             Clear();
 
-            Close();
+            
         }
     }
 }
